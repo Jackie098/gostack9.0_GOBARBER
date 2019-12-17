@@ -3,6 +3,7 @@ module.exports = {
   host: 'localhost',
   username: 'postgres',
   password: '1234',
+  port: 5433,
   database: 'gobarber',
   define: {
     timestamp: true, // /Com isso, eu crio as colunas : 'createAt' e 'updateAt' que respectivamente amarzenarão a data de criação e de última alteração da tabela correspondente
