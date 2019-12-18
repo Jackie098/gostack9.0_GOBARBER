@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 class User extends Model {
   static init(sequelize) {
@@ -6,6 +7,7 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
+        password: Sequelize.VIRTUAL, // Nunca vai existir no BD, apenas existe no lado do código
         password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
       },
@@ -13,6 +15,15 @@ class User extends Model {
         sequelize,
       }
     );
+
+    this.addHook('beforeSave', async user => {
+      // Antes de qualquer save no BD esta função será acionada
+      if (user.password) {
+        user.password_hash = await bcrypt.hash(user.password, 8);
+      }
+    });
+
+    return this;
   }
 }
 
