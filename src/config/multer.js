@@ -4,7 +4,7 @@ import { extname, resolve } from 'path';
 
 export default {
   storage: multer.diskStorage({
-    dastination: resolve(__dirname, '..', '..', 'tmp', 'uploads'),
+    destination: resolve(__dirname, '..', '..', 'tmp', 'uploads'),
 
     /**  Adicionar um código único para cada imagem
      * inserida pelo usuário (para por no perfil, vulgo upload).
