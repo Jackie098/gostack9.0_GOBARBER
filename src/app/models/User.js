@@ -26,6 +26,16 @@ class User extends Model {
     return this;
   }
 
+  /**
+   * Isso significa que o modelo de User será associado ao modelo File através
+   * da chave estrangeira 'avatar_id'. Pois antes disso, a referência não era
+   * salva justamente por não existir um campo para o ID da imagem
+   * no 'Model User'
+   */
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }

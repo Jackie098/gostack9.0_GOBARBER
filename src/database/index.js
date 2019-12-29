@@ -15,7 +15,14 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    models.map(model => model.init(this.connection));
+    models
+      .map(model => model.init(this.connection))
+
+      /**
+       * Serve para usar o método 'associate' em todos modelos que tiver
+       * o mesmo método
+       */
+      .map(model => model.associate && model.associate(this.connection.models));
   }
 }
 
