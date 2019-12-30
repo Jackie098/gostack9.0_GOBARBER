@@ -6,6 +6,16 @@ class File extends Model {
       {
         name: Sequelize.STRING,
         path: Sequelize.STRING,
+        url: {
+          /**
+           * Campo virtual que retorna uma url com o nome da imagem
+           * na aplicação
+           */
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `http://localhost:3333/files/${this.path}`;
+          },
+        },
       },
       {
         sequelize,
