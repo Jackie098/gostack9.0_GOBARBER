@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import * as Yup from 'yup';
+import { startOfHour, parseISO, isBefore } from 'date-fns';
 import User from '../models/User';
 import Appointment from '../models/Appointment';
 
@@ -30,6 +31,38 @@ class AppointmentController {
     }
 
     /**
+     * - parseIso -> Converte a string de hora da requisição para o
+     *  formato 'DATE' do javascript
+     * - startOfHour -> Captura apenas a hora da data,ignorando o resto, ou
+     * seja, será possível apenas fazer agendamentos de hora em hora
+     */
+    const hourStart = startOfHour(parseISO(date));
+
+    /**
+     * Verifica se a data já passou, se sim, envia um erro como resposta
+     */
+    if (isBefore(hourStart, new Date())) {
+      return res.status(400).json({ error: 'Past dates are not permitted' });
+    }
+
+    /**
+     * Verifica se já não existe alguém com aquele horário reservado
+     */
+    const checkAvailability = await Appointment.findOne({
+      where: {
+        providerId,
+        canceled_at: null,
+        date: hourStart,
+      },
+    });
+
+    if (checkAvailability) {
+      return res
+        .status(400)
+        .json({ error: 'Appointment date is not available' });
+    }
+
+    /**
      * Para o usuário que está fazendo o agendamento, seu ID está no middleware
      * de autenticação, por isso pode ser facilmente passado através da
      * requisição
@@ -37,7 +70,7 @@ class AppointmentController {
     const appointment = await Appointment.create({
       userId: req.userId,
       providerId,
-      date,
+      date: hourStart,
     });
 
     return res.json(appointment);
