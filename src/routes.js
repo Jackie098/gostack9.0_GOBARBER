@@ -9,6 +9,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FIleController';
 import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
+import ScheduleController from './app/controllers/ScheduleController';
 
 import authMiddleware from './app/middleware/auth';
 
@@ -40,5 +41,10 @@ routes.post('/files', upload.single('file'), FileController.store);
  */
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
+
+/**
+ * Para gerenciar Schedule (Agenda)
+ */
+routes.get('/schedule', ScheduleController.index);
 
 export default routes;
