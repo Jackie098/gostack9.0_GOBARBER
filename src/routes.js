@@ -10,6 +10,7 @@ import FileController from './app/controllers/FIleController';
 import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
+import NotificationController from './app/controllers/NotificationController';
 
 import authMiddleware from './app/middleware/auth';
 
@@ -27,7 +28,7 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
 /**
- * Para tratar somente Providers (prestadores de serviço)
+ * Para tratar Providers
  */
 routes.get('/providers', ProviderController.index);
 
@@ -46,5 +47,10 @@ routes.post('/appointments', AppointmentController.store);
  * Para gerenciar Schedule (Agenda)
  */
 routes.get('/schedule', ScheduleController.index);
+
+/**
+ * Para gerenciar Notifications
+ */
+routes.get('/notifications', NotificationController.index);
 
 export default routes;
