@@ -52,5 +52,6 @@ routes.get('/schedule', ScheduleController.index);
  * Para gerenciar Notifications
  */
 routes.get('/notifications', NotificationController.index);
+routes.put('/notifications/:id', NotificationController.update);
 
 export default routes;
