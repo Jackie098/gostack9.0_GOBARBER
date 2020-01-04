@@ -48,7 +48,7 @@ class Mail {
    * que está sendo passado como parâmetro
    */
   sendMail(message) {
-    return this.trasporter.sendMail({
+    return this.transporter.sendMail({
       ...mailConfig.default,
       ...message,
     });
