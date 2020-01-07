@@ -30,7 +30,7 @@ class NotificationController {
     /**
      * Busca e atualiza.
      * O 1º param -> É o valor de busca.
-     * O 2º param -> é o que eu quero atualizar no registro da
+     * O 2º param -> É o que eu quero atualizar no registro da
      * respectiva coleção.
      * O 3º param -> Retorna o registro atualizado
      */
