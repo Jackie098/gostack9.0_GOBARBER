@@ -10,8 +10,8 @@ class CancellationMail {
     return 'CancellationMail';
   }
 
-  async handle({ date }) {
-    const { appointment } = date;
+  async handle({ data }) {
+    const { appointment } = data;
 
     console.log('A fila executou');
 

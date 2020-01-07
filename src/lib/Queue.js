@@ -44,7 +44,7 @@ class Queue {
   }
 
   /**
-   * Método responsável adicionar novos jobs na fila
+   * Método responsável por adicionar novos jobs na fila
    */
   add(queue, job) {
     return this.queues[queue].bee.createJob(job).save();
@@ -54,6 +54,7 @@ class Queue {
    * Processa as jobs das filas
    */
   processQueue() {
+    console.log('Queue.js processQueue');
     jobs.forEach(job => {
       const { bee, handle } = this.queues[job.key];
 
