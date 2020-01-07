@@ -54,7 +54,6 @@ class Queue {
    * Processa as jobs das filas
    */
   processQueue() {
-    console.log('Queue.js processQueue');
     jobs.forEach(job => {
       const { bee, handle } = this.queues[job.key];
 

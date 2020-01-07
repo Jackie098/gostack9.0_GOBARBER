@@ -48,8 +48,6 @@ class Mail {
    * que está sendo passado como parâmetro
    */
   sendMail(message) {
-    console.log(this.transporter);
-
     return this.transporter.sendMail({
       ...mailConfig.default,
       ...message,
