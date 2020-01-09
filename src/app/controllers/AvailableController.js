@@ -19,7 +19,7 @@ class AvailableController {
     }
 
     const searchDate = Number(date);
-    console.log(`${startOfDay(searchDate)}//${endOfDay(searchDate)}`);
+
     const appointments = await Appointment.findAll({
       where: {
         provider_id: req.params.providerId,
@@ -43,8 +43,14 @@ class AvailableController {
       '17:00',
       '18:00',
       '19:00',
+      '20:00',
+      '21:00',
     ];
 
+    /**
+     * - Divido a hora dos minutos pra cada elemento da lista
+     * - value -> Seto segundos = 0, minutos = 'minute' e horas = 'hour'
+     */
     const available = schedule.map(time => {
       const [hour, minute] = time.split(':');
 
