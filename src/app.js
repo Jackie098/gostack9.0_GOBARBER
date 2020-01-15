@@ -39,12 +39,21 @@ class App {
   exceptionHandler() {
     this.server.use(async (err, req, res, next) => {
       /**
-       * Youch é responsável por fazer uma tratativa nas mensagens de erros para dar
-       * uma visualização melhor para o desenvolvedor
+       * Retornar os erros apenas se o ambiente for para
+       * 'desenvolvimento', para ambientes de produção não recomenda-se
+       * exibir mensagens tão sensíveis
        */
-      const errors = await new Youch(err, req).toJSON();
+      if (process.env.NODE_ENV === 'development') {
+        /**
+         * Youch é responsável por fazer uma tratativa nas mensagens de erros para dar
+         * uma visualização melhor para o desenvolvedor
+         */
+        const errors = await new Youch(err, req).toJSON();
 
-      return res.status(500).json(errors);
+        return res.status(500).json(errors);
+      }
+
+      return res.status(500).json({ error: 'Internal server error' });
     });
   }
 }

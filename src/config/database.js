@@ -2,11 +2,11 @@ require('dotenv/config');
 
 module.exports = {
   dialect: 'postgres',
-  host: 'localhost',
-  username: 'postgres',
-  password: '1234',
-  port: 5433,
-  database: 'gobarber',
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
   define: {
     timestamp: true, // Com isso, eu crio as colunas : 'createAt' e 'updateAt' que respectivamente amarzenarão a data de criação e de última alteração da tabela correspondente
     underscored: true,
