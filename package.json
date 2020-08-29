@@ -10,7 +10,7 @@
     "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
-    "@sentry/node": "5.11.0",
+    "@sentry/node": "5.22.3",
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.2.2",
     "date-fns": "^2.0.0-beta.5",
