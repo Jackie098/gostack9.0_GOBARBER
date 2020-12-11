@@ -27,7 +27,7 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
     "youch": "^2.0.10",
-    "yup": "^0.28.0"
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
